@@ -2,7 +2,6 @@
 
 #### 介绍
 使用vite2.x及vue3.x并集成Element Plus，开发后台管理系统demo。
-# Vite-Demo
 
 #### 框架
 Vite2.6.4 + Vue3.0
