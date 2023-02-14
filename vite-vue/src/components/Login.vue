@@ -26,6 +26,7 @@
 <script setup>
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
+import { Login } from "../axios/api";
 
 // 配置了按需导入Element-Plus则不用引入，否则反而会丢失样式
 // import { ElMessage } from "element-plus";
@@ -79,12 +80,21 @@ const submitForm = (formEl) => {
   if (!formEl) return;
   formEl.validate((valid) => {
     if (valid) {
-      ElMessage.success("Submitted!");
-      router.push({
-        path: "/", // HelloWorld.vue在路由配置文件中定义的路径
-        params: {
-          isLogged: true,
-        },
+      // axios接口
+      Login(loginForm).then((response) => {
+        const { code, msg, data: res } = response.data;
+        if (code === 0) {
+          localStorage.setItem("token", res.token);
+          ElMessage.success(msg ?? "Submitted!");
+          router.push({
+            path: "/", // HelloWorld.vue在路由配置文件中定义的路径
+            params: {
+              isLogged: true,
+            },
+          });
+        } else {
+          ElMessage.error(msg);
+        }
       });
     } else {
       ElMessage.error("Oops, error submit!");

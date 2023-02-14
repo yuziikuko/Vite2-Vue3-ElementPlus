@@ -16,3 +16,13 @@ const router = createRouter({
 });
 
 export default router;
+
+// 路由守卫
+router.beforeEach((to) => {
+  // 根据token判断是否登录
+  let token = localStorage.getItem("token");
+  // 有token但是访问的是登录页 => 强制跳转到首页
+  if (token && to.path === "/login") return "/";
+  // 没有token但是访问的是首页 => 强制跳转到登录页
+  else if (!token && to.path !== "/login") return "/login";
+});
