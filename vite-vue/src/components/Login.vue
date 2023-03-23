@@ -37,8 +37,8 @@ const router = useRouter();
 // 表单数据
 const loginFormRef = ref();
 const loginForm = reactive({
-  email: "",
-  pass: "",
+  email: "111@test.com",
+  pass: "test",
 });
 
 // 表单规则
@@ -80,21 +80,32 @@ const submitForm = (formEl) => {
   if (!formEl) return;
   formEl.validate((valid) => {
     if (valid) {
-      // axios接口
-      Login(loginForm).then((response) => {
-        const { code, msg, data: res } = response.data;
-        if (code === 0) {
-          localStorage.setItem("token", res.token);
-          ElMessage.success(msg ?? "Submitted!");
-          router.push({
-            path: "/", // HelloWorld.vue在路由配置文件中定义的路径
-            params: {
-              isLogged: true,
-            },
-          });
-        } else {
-          ElMessage.error(msg);
-        }
+      // // axios接口
+      // Login(loginForm).then((response) => {
+      //   const { code, msg, data: res } = response.data;
+      //   if (code === 0) {
+      //     localStorage.setItem("token", res.token);
+      //     ElMessage.success(msg ?? "Submitted!");
+      //     router.push({
+      //       path: "/", // HelloWorld.vue在路由配置文件中定义的路径
+      //       params: {
+      //         isLogged: true,
+      //       },
+      //     });
+      //   } else {
+      //     ElMessage.error(msg);
+      //   }
+      // });
+
+      // Demo 直接登录
+      localStorage.setItem("token", "test token");
+      ElMessage.success("Submitted!");
+      router.push({
+        // path: "/", // HelloWorld.vue在路由配置文件中定义的路径
+        name: "HelloWorld", // name 搭配 params 传参、path 搭配 query 传参
+        params: {
+          isLogged: true,
+        },
       });
     } else {
       ElMessage.error("Oops, error submit!");

@@ -1,7 +1,10 @@
 <template>
   <!-- 当前路由如果包含“已登录”字段，则隐藏该按钮并显示“已登录” -->
-  <el-button type="danger" @click="toLogin" v-if="isLogged">登录</el-button>
+  <el-button type="danger" @click="toLogin" v-if="!isLogged">登录</el-button>
   <h1 v-else>已登录</h1>
+
+  <!-- 退出登录 -->
+  <el-button type="warning" @click="toLogout" v-if="isLogged">退出登录</el-button>
 </template>
 
 <script setup>
@@ -15,6 +18,11 @@ const route = useRoute();
 const isLogged = route.params.isLogged;
 
 const toLogin = () => {
+  router.push("/login");
+};
+
+const toLogout = () => {
+  localStorage.removeItem("token");
   router.push("/login");
 };
 </script>
