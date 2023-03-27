@@ -7,6 +7,12 @@ import App from "./App.vue";
 // 引入Vue-Router
 import Router from "./router";
 
+// 引入Vue-i18n
+import i18n from "./lang";
+// Element Plus全局配置国际化
+import zhCn from "element-plus/dist/locale/zh-cn.mjs";
+import en from "element-plus/dist/locale/en.mjs";
+
 const app = createApp(App);
 
 // // 引入Axios
@@ -26,6 +32,11 @@ const app = createApp(App);
 // // });
 // app.config.globalProperties.$http = axios; // 关键语句
 
-app.use(ElementPlus);
+// app.use(ElementPlus);
+app.use(ElementPlus, {
+  // locale: zhCn,
+  locale: localStorage.getItem("locale") === "zh_CN" ? zhCn : en,
+});
 app.use(Router);
+app.use(i18n);
 app.mount("#app");

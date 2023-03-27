@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 50px 0 0">
-    <h1 style="font-size: 50px; font-weight: bolder">Login</h1>
+    <h1 style="font-size: 50px; font-weight: bolder">{{ t("title.login") }}</h1>
   </div>
 
   <el-form
@@ -10,15 +10,19 @@
     :rules="loginFormRules"
     label-width="120px"
   >
-    <el-form-item label="Account" prop="email">
+    <el-form-item :label="t('label.email')" prop="email">
       <el-input v-model="loginForm.email"></el-input>
     </el-form-item>
-    <el-form-item label="Password" prop="pass">
+    <el-form-item :label="t('label.password')" prop="pass">
       <el-input v-model="loginForm.pass" type="password" autocomplete="off" />
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="submitForm(loginFormRef)">Submit</el-button>
-      <el-button @click="resetForm(loginFormRef)">Reset</el-button>
+      <el-button type="primary" @click="submitForm(loginFormRef)">
+        {{ t("button.submit") }}
+      </el-button>
+      <el-button @click="resetForm(loginFormRef)">
+        {{ t("button.reset") }}
+      </el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -27,6 +31,10 @@
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { Login } from "../axios/api";
+
+// 导入t函数
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 // 配置了按需导入Element-Plus则不用引入，否则反而会丢失样式
 // import { ElMessage } from "element-plus";
