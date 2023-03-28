@@ -107,7 +107,9 @@ const submitForm = (formEl) => {
 
       // Demo 直接登录
       localStorage.setItem("token", "test token");
-      ElMessage.success("Submitted!");
+      ElMessage.success(
+        localStorage.getItem("locale") === "zh_CN" ? "登录成功！" : "Submitted!"
+      );
       router.push({
         // path: "/", // HelloWorld.vue在路由配置文件中定义的路径
         name: "HelloWorld", // name 搭配 params 传参、path 搭配 query 传参

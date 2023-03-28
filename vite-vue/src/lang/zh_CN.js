@@ -9,6 +9,7 @@ const zh_CN = {
     isLogged: "已登录",
     submit: "提交",
     reset: "重置",
+    openDrawer: "打开抽屉",
   },
   label: {
     email: "邮箱",

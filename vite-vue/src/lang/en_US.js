@@ -9,6 +9,7 @@ const en_US = {
     isLogged: "Logged",
     submit: "Submit",
     reset: "Reset",
+    openDrawer: "Open Drawer",
   },
   label: {
     email: "Email",
